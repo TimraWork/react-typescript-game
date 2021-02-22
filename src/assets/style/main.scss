@@ -1,0 +1,294 @@
+$accent: #000;
+
+// footer bottom BEGIN
+.main {
+  display: flex !important;
+  flex-direction: column;
+  min-height: 100vh;
+  font-weight: normal;
+  background: #fff;
+}
+
+img {
+  max-width: 100%;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 2px solid $accent !important;
+}
+
+nav a.active {
+  background-color: rgba($accent, 0.3) !important;
+}
+
+footer {
+  border-top: 1px solid rgba($accent, 0.3);
+  padding: 30px 0;
+  margin-top: auto;
+  color: $accent;
+  text-align: center;
+}
+
+.copyright {
+  font-weight: bold;
+}
+// footer bottom BEGIN
+
+// LOGO begin
+.logo {
+  display: flex;
+  align-items: center;
+  color: rgba($accent, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: rgba($accent, 1);
+    .logo__img {
+      opacity: 1;
+    }
+  }
+  &__img {
+    width: 100px;
+    margin-right: 10px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+  }
+  &__text {
+    display: inline-block;
+    vertical-align: top;
+  }
+  &__title {
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 1;
+    display: block;
+  }
+}
+
+.nav {
+  display: inline-flex;
+}
+
+.searchIcon,
+.MuiButton-label {
+  color: $accent;
+}
+
+.MuiCardActionArea-root {
+  transition: all 0.3s ease-in-out;
+}
+
+.searchBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba($accent, 0.2);
+  border-radius: 15px;
+  padding: 0 15px;
+  .searchIcon {
+    margin-right: 10px;
+  }
+  .MuiInputBase-input {
+    width: 70px;
+    transition: all 0.3s ease-in-out;
+    &:focus {
+      width: 140px;
+    }
+  }
+  .MuiSvgIcon-root {
+    vertical-align: bottom;
+  }
+}
+
+.error {
+  color: #f48fb1;
+}
+
+.content {
+  // padding: 40px 0;
+}
+
+.MuiPagination-root {
+  text-align: center;
+  margin: 30px auto 30px;
+  color: #fff;
+  .MuiPagination-ul {
+    justify-content: center;
+  }
+}
+
+// Loader BEGIN
+/* KEYFRAMES */
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.25;
+    transform: scale(0.75);
+  }
+}
+
+/* PULSE BUBBLES */
+
+.pulse-container {
+  margin: 30px auto 30px;
+  width: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pulse-bubble {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: $accent;
+}
+
+.pulse-bubble-1 {
+  animation: pulse 0.4s ease 0s infinite alternate;
+}
+.pulse-bubble-2 {
+  animation: pulse 0.4s ease 0.2s infinite alternate;
+}
+.pulse-bubble-3 {
+  animation: pulse 0.4s ease 0.4s infinite alternate;
+}
+
+// Loader END
+
+.error {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 14px;
+}
+
+.date {
+  color: gray;
+}
+
+.MuiCard-root {
+  max-height: 435px;
+  overflow-y: scroll !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+// loader begin
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: $accent;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+
+.example-eneter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+//Loader end
+
+footer {
+  flex: 0 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+// footer-logo
+.footer-logo {
+  flex: 0 1 auto;
+  &__img {
+    width: 80px;
+  }
+}
+
+.copyright {
+  margin: auto;
+}
+
+@import './media';
