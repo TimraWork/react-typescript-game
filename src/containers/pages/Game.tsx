@@ -1,4 +1,7 @@
+import {Button} from '@material-ui/core';
 import React, {FC, useState} from 'react';
+import {Fade} from '@material-ui/core';
+// import audioButtonClick from '../../assets/audio/buttonClick';
 
 interface IProps {
   value: string;
@@ -70,6 +73,18 @@ export const Board = () => {
     }
     array[i] = xIsNext ? 'X' : 'O';
 
+    // if (this.audio) {
+    //   this.audio.pause();
+    // }
+    // this.audio = new Audio(e.target.dataset.url);
+    // this.audio.play();
+
+    const alarm = require('../../assets/audio/buttonClick');
+
+    const audio = new Audio(alarm);
+    // 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3';
+    audio.play();
+
     setSquares(array);
     setXIsNext(!xIsNext);
     setWinner(getWinner(array));
@@ -82,19 +97,21 @@ export const Board = () => {
   };
 
   return (
-    <>
-      <div className="status">&nbsp;{getStatus(getWinner(squares), xIsNext)}</div>
-      <div className="board">
-        {squares.map((el, idx) => {
-          return <Square key={idx} value={el} setActive={() => handleClick(idx)} />;
-        })}
-      </div>
-      {(winner || isTie) && (
-        <button className="play-again" onClick={handlePlayAgain}>
-          Play again
-        </button>
-      )}
-    </>
+    <Fade in={true} timeout={200}>
+      <>
+        <div className="status">&nbsp;{getStatus(getWinner(squares), xIsNext)}</div>
+        <div className="board">
+          {squares.map((el, idx) => {
+            return <Square key={idx} value={el} setActive={() => handleClick(idx)} />;
+          })}
+        </div>
+        {(winner || isTie) && (
+          <Button variant="contained" onClick={handlePlayAgain}>
+            Play again
+          </Button>
+        )}
+      </>
+    </Fade>
   );
 };
 
@@ -103,6 +120,7 @@ export const Game = () => {
   return (
     <div className="game">
       <div className="game-board">
+        <h1>Tic-Tac-Toe</h1>
         <Board />
       </div>
       <div className="game-info">

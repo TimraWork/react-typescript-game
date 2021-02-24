@@ -297,6 +297,10 @@ footer {
   height: auto;
   display: grid;
   grid-template-columns: auto auto auto;
+  gap: 6px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  // background: black;
 }
 
 .status {
@@ -304,13 +308,12 @@ footer {
 }
 
 .square {
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 54px;
-  width: 54px;
-  height: 54px;
+  font: bold 24px/54px 'Jura', sans-serif;
+  width: 100px;
+  height: 100px;
   background: #fff;
-  border: 1px solid #999;
+  border: none;
+  border-radius: 10px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
@@ -337,6 +340,7 @@ footer {
   width: 100%;
   justify-content: center;
   align-items: center;
+  text-align: center;
   width: 100%;
   height: 80vh;
   flex-direction: row;
