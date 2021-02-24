@@ -26,7 +26,7 @@ const getWinner = (squares: Array<string | number | null>) => {
     [2, 5, 8],
     // diagonal indexes
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
 
   for (let i = 0; i < winnerLines.length; i++) {
@@ -43,7 +43,6 @@ const getWinner = (squares: Array<string | number | null>) => {
 };
 
 const getStatus = (winner: any, xIsNext: any) => {
-  console.log('winner', winner);
   let status = winner ? 'Winner: ' + winner : 'Next: ' + (xIsNext ? 'O' : 'X');
   return status;
 };
@@ -52,24 +51,22 @@ const getStatus = (winner: any, xIsNext: any) => {
 export const Board = () => {
   const [squares, setSquares] = useState<Array<string>>(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState<boolean>(true);
-  const [status, setStatus] = useState<string | number | null>(null);
 
   const handleClick = (i: number) => {
     const array: Array<string> = squares.slice();
-    // ignore click if has winner or if the cell is already full(repeat click)
-    if (/* (getWinner(array) || */ squares[i]) {
+
+    if (getWinner(array) || squares[i]) {
       return;
     }
     array[i] = xIsNext ? 'X' : 'O';
+
     setSquares(array);
     setXIsNext(!xIsNext);
-
-    setStatus(getStatus(getWinner(array), xIsNext));
   };
 
   return (
     <>
-      <div className="status">{status}</div>
+      <div className="status">{getStatus(getWinner(squares), xIsNext)}</div>
       <div className="board">
         {squares.map((el, idx) => {
           return <Square key={idx} value={el} setActive={() => handleClick(idx)} />;
