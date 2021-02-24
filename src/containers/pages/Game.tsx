@@ -14,43 +14,53 @@ export const Square: FC<IProps> = ({value, setActive}) => {
   );
 };
 
-const getWinner = (squares: Array<string | number | null>) => {
-  const winnerLines = [
-    // horizontal indexes
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    // vertical indexes
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    // diagonal indexes
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
+// Board - first child
+export const Board = () => {
+  const [squares, setSquares] = useState<Array<string>>(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState<boolean>(true);
+  const [winner, setWinner] = useState<string | null>(null);
+  const [isTie, setIsTie] = useState<boolean>(false);
 
-  for (let i = 0; i < winnerLines.length; i++) {
-    const [firstIdx, secondIdx, thirdIdx] = winnerLines[i];
-    // prettier-ignore
-    if (squares[firstIdx] &&
+  const getWinner = (squares: Array<string | null>) => {
+    const winnerLines = [
+      // horizontal indexes
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      // vertical indexes
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      // diagonal indexes
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < winnerLines.length; i++) {
+      const [firstIdx, secondIdx, thirdIdx] = winnerLines[i];
+      // prettier-ignore
+      if (squares[firstIdx] &&
         squares[firstIdx] === squares[secondIdx] &&
         squares[firstIdx] === squares[thirdIdx])
       {
         return squares[firstIdx];
       }
-  }
-  return null;
-};
+    }
+    return null;
+  };
 
-const getStatus = (winner: any, xIsNext: any) => {
-  let status = winner ? 'Winner: ' + winner : 'Next: ' + (xIsNext ? 'O' : 'X');
-  return status;
-};
+  const getStatus = (winner: string | null, xIsNext: boolean) => {
+    let status;
+    if (winner) {
+      status = 'Победитель: ' + winner;
+    } else if (isTie) {
+      status = 'Ничья: !!';
+    } else {
+      status = 'Следующий: ' + (xIsNext ? 'X' : '0');
+    }
 
-// Board - first child
-export const Board = () => {
-  const [squares, setSquares] = useState<Array<string>>(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState<boolean>(true);
+    return status;
+  };
 
   const handleClick = (i: number) => {
     const array: Array<string> = squares.slice();
@@ -62,16 +72,28 @@ export const Board = () => {
 
     setSquares(array);
     setXIsNext(!xIsNext);
+    setWinner(getWinner(array));
+    setIsTie(array.filter((el) => el).length === 9);
+  };
+
+  const handlePlayAgain = () => {
+    setSquares(Array(9).fill(null));
+    setIsTie(false);
   };
 
   return (
     <>
-      <div className="status">{getStatus(getWinner(squares), xIsNext)}</div>
+      <div className="status">&nbsp;{getStatus(getWinner(squares), xIsNext)}</div>
       <div className="board">
         {squares.map((el, idx) => {
           return <Square key={idx} value={el} setActive={() => handleClick(idx)} />;
         })}
       </div>
+      {(winner || isTie) && (
+        <button className="play-again" onClick={handlePlayAgain}>
+          Play again
+        </button>
+      )}
     </>
   );
 };
