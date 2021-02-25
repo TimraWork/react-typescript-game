@@ -1,7 +1,6 @@
 import {Button} from '@material-ui/core';
 import React, {FC, useState} from 'react';
 import {Fade} from '@material-ui/core';
-// import audioButtonClick from '../../assets/audio/buttonClick';
 
 interface IProps {
   value: string;
@@ -76,13 +75,10 @@ export const Board = () => {
     // if (this.audio) {
     //   this.audio.pause();
     // }
-    // this.audio = new Audio(e.target.dataset.url);
+    // this.audio = new Audio('audio_url');
     // this.audio.play();
 
-    const alarm = require('../../assets/audio/buttonClick');
-
-    const audio = new Audio(alarm);
-    // 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3';
+    const audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3');
     audio.play();
 
     setSquares(array);
