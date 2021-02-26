@@ -292,6 +292,33 @@ footer {
 }
 
 // Styles for tic-toc
+.square {
+  font: bold 24px/54px 'Jura', sans-serif;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &--winner {
+    background: #e0e0e0;
+    svg * {
+      stroke: #ed4b82;
+    }
+  }
+}
+
+.square:hover,
+.square:focus {
+  background: #e0e0e0;
+  outline: none;
+}
+
 .board {
   width: auto;
   height: auto;
@@ -309,36 +336,13 @@ footer {
   }
 }
 
-.status {
-  margin-bottom: 10px;
-}
+.board--disabled button.square {
+  // pointer-events: none;
 
-.square {
-  font: bold 24px/54px 'Jura', sans-serif;
-  width: 100px;
-  height: 100px;
-  background: #fff;
-  border: none;
-  border-radius: 10px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.square:hover,
-.square:focus {
-  background: #e0e0e0;
-}
-
-.square:focus {
-  outline: none;
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
+  pointer-events: none !important;
+  &:hover {
+    background: none !important;
+  }
 }
 
 .game {
@@ -362,6 +366,10 @@ footer {
   color: #009688;
   margin-bottom: 20px;
   transition: all 0.4s ease;
+  margin-bottom: 10px;
+  &--nextX {
+    color: #606060;
+  }
   &--win {
     color: #ed4b82;
   }
