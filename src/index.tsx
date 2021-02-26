@@ -9,7 +9,7 @@ import {store, persistor} from './redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import {Provider} from 'react-redux';
-import {Game} from './containers/pages/Game';
+import {Game} from './components/Game';
 
 ReactDOM.render(
   <Provider store={store}>
