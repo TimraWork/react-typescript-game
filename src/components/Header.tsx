@@ -9,8 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {Container} from '@material-ui/core';
 import {Logo} from './parts/Logo';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import {Nav} from './parts/Nav';
+import {BtnFullScreen} from '../containers/parts/BtnFullScreen';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export function Header() {
   const classes = useStyles();
 
+  const FullscreenIconClickHandler = () => {
+    console.log('click');
+  };
+
   return (
     <AppBar position="sticky" color="inherit" className={classes.appBar}>
       <Container maxWidth="xl">
@@ -56,14 +60,10 @@ export function Header() {
             <IconButton className={classes.menuButton}>
               <SettingsIcon />
             </IconButton>
-
             <IconButton className={classes.menuButton}>
               <VolumeOffIcon />
             </IconButton>
-
-            <IconButton className={classes.menuButton}>
-              <FullscreenIcon />
-            </IconButton>
+            <BtnFullScreen />
           </div>
 
           <div className={classes.sectionMobile}>

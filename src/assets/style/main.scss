@@ -329,16 +329,17 @@ footer {
   margin-bottom: 30px;
   transition: all 0.6s ease-in-out;
   &--disabled {
-    opacity: 0.4;
-    &:hover {
-      opacity: 1;
-    }
+    animation: hide 0.4s 3s ease-in-out forwards;
   }
 }
 
+@keyframes hide {
+  100% {
+    opacity: 0;
+  }
+}
 .board--disabled button.square {
   // pointer-events: none;
-
   pointer-events: none !important;
   &:hover {
     background: none !important;
@@ -354,6 +355,22 @@ footer {
   width: 100%;
   height: calc(100vh - 200px);
   flex-direction: row;
+  &--board {
+    position: relative;
+  }
+  &--title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -120px;
+  }
+}
+
+.play-again {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -20px;
 }
 
 .game-info {
@@ -361,17 +378,29 @@ footer {
 }
 
 .status {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40px;
   font-size: 20px;
   font-weight: bold;
   color: #009688;
-  margin-bottom: 20px;
-  transition: all 0.4s ease;
   margin-bottom: 10px;
+
   &--nextX {
     color: #606060;
   }
   &--win {
+    animation: win 0.6s 3s ease-in-out forwards;
     color: #ed4b82;
+  }
+}
+
+@keyframes win {
+  100% {
+    top: 25%;
+    font-size: 50px;
+    z-index: 1;
   }
 }
 
@@ -390,7 +419,6 @@ footer {
   height: 50px;
   stroke-dasharray: 283;
   stroke-dashoffset: 283;
-  -webkit-animation: draw 1s ease-in-out forwards;
   animation: draw 1s ease-in-out forwards;
   margin: auto;
 }
@@ -423,6 +451,16 @@ footer {
     stroke-dashoffset: 0;
     opacity: 1;
   }
+}
+
+.game:fullscreen {
+  background: #eeeeee;
+}
+
+.game:-ms-fullscreen,
+.game:-moz-full-screen,
+.game:-webkit-full-screen {
+  background: #eeeeee;
 }
 
 @import './media';

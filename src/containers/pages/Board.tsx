@@ -1,8 +1,7 @@
-import {Button} from '@material-ui/core';
 import React, {FC, useState} from 'react';
+import {Button} from '@material-ui/core';
 import {Square} from '../../components/Square';
 
-// Board - first child
 export const Board: FC = () => {
   const [squares, setSquares] = useState<Array<string>>(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState<boolean>(true);
@@ -36,11 +35,11 @@ export const Board: FC = () => {
   const getStatus = (winner: string | null, xIsNext: boolean) => {
     let status;
     if (winner) {
-      status = 'Победитель: ' + winner;
+      status = 'Winner: ' + winner;
     } else if (isTie) {
-      status = 'Ничья !!';
+      status = 'TIE !!';
     } else {
-      status = 'Следующий: ' + (xIsNext ? 'X' : '0');
+      status = 'Next: ' + (xIsNext ? 'X' : '0');
     }
 
     return status;
@@ -58,6 +57,11 @@ export const Board: FC = () => {
     setXIsNext(!xIsNext);
     const winnerEl = getWinner(array)?.winner || null;
     setWinner(winnerEl);
+
+    const audioUrl = xIsNext ? 'https://timra.ru/portfolio/audio/cross.mp3' : 'https://timra.ru/portfolio/audio/zero.mp3';
+    const audio = new Audio(audioUrl);
+    audio.volume = 0.1;
+    audio.play();
 
     setIsTie(array.filter((el) => el).length === 9);
   };
@@ -81,7 +85,7 @@ export const Board: FC = () => {
         })}
       </div>
       {(winner || isTie) && (
-        <Button variant="contained" onClick={handlePlayAgain}>
+        <Button className="play-again" variant="contained" onClick={handlePlayAgain}>
           Play again
         </Button>
       )}

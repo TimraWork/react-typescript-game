@@ -22,7 +22,6 @@ const Cross: FC = () => (
 );
 
 export const Square: FC<IProps> = ({value, isWinner, setActive}) => {
-  console.log(isWinner);
   return (
     <button className={`square ${isWinner ? 'square--winner' : ''}`} onClick={setActive}>
       {value === 'O' && <Circle />}
