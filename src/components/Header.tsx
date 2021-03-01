@@ -2,18 +2,23 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import {Logo} from './parts/Logo';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 interface IProps {
   onBtnFullScreenClick: () => void;
+  onBtnVolumeMuteClick?: () => void;
+  isMute: boolean;
 }
 
-export const Header: React.FC<IProps> = ({onBtnFullScreenClick}) => {
+export const Header: React.FC<IProps> = ({onBtnFullScreenClick, onBtnVolumeMuteClick, isMute}) => {
   return (
     <header>
       <Logo />
       <IconButton onClick={onBtnFullScreenClick}>
         <FullscreenIcon />
       </IconButton>
+      <IconButton onClick={onBtnVolumeMuteClick}>{!isMute ? <VolumeOffIcon /> : <VolumeUpIcon />}</IconButton>
     </header>
   );
 };

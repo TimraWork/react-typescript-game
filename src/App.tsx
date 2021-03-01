@@ -15,6 +15,7 @@ interface IFullScreenRef extends HTMLElement {
 
 const App: React.FC = () => {
   const [fullScreenRef, setFullScreenRef] = useState<refElement>(null);
+  const [isMute, setIsMute] = useState<boolean>(false);
 
   const setRef = (ref: refElement) => {
     setFullScreenRef(ref);
@@ -28,10 +29,14 @@ const App: React.FC = () => {
     if (target && target.mozRequestFullScreen) target.mozRequestFullScreen();
   };
 
+  const handleBtnVolumeMuteClick = () => {
+    setIsMute(!isMute);
+  };
+
   return (
     <>
-      <Header onBtnFullScreenClick={handleBtnFullScreenClick} />
-      <Game innerRef={setRef} />
+      <Header onBtnFullScreenClick={handleBtnFullScreenClick} onBtnVolumeMuteClick={handleBtnVolumeMuteClick} isMute={isMute} />
+      <Game innerRef={setRef} isMute={isMute} />
       <Footer />
     </>
   );

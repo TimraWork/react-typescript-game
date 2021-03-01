@@ -4,14 +4,15 @@ import {refElement} from '../types';
 
 interface IProps {
   innerRef: (ref: refElement) => void;
+  isMute: boolean;
 }
 
-export const Game: React.FC<IProps> = ({innerRef}) => {
+export const Game: React.FC<IProps> = ({innerRef, isMute}) => {
   return (
     <div className="game" ref={innerRef}>
       <div className="game--board">
         <h1 className="game--title">Tic-Tac-Toe</h1>
-        <Board />
+        <Board isMute={isMute} />
       </div>
     </div>
   );
