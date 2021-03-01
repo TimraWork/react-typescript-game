@@ -37,7 +37,7 @@ export const Board: FC = () => {
     if (winner) {
       status = 'Winner: ' + winner;
     } else if (isTie) {
-      status = 'TIE !!';
+      status = 'TIE !!!';
     } else {
       status = 'Next: ' + (xIsNext ? 'X' : '0');
     }
@@ -85,8 +85,8 @@ export const Board: FC = () => {
         })}
       </div>
       {(winner || isTie) && (
-        <Button className="play-again" variant="contained" onClick={handlePlayAgain}>
-          Play again
+        <Button className="btn-new-game" variant="contained" onClick={handlePlayAgain}>
+          new game
         </Button>
       )}
     </>

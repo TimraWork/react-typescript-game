@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter} from 'react-router-dom';
 import {theme} from './theme';
+import './assets/style/main.scss';
+
 import App from './App';
 
 import {store, persistor} from './redux/store';

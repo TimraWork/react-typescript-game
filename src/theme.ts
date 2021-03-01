@@ -1,7 +1,6 @@
 import {createMuiTheme} from '@material-ui/core/styles';
 const ACCENT_COLOR = 'rgb(0, 0, 0)';
 
-// Create a theme instance.
 export const theme = createMuiTheme({
   palette: {
     primary: {
@@ -12,44 +11,19 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: 'Jura',
-    body2: {
-      fontFamily: 'Jura',
-      fontSize: '1rem'
-    }
+    fontFamily: 'Jura'
   },
   shape: {
     borderRadius: 20
   },
   overrides: {
-    MuiChip: {
-      root: {
-        margin: '0 10px 20px 0'
-      }
-    },
-    MuiTextField: {
-      root: {
-        borderColor: ACCENT_COLOR,
-        marginBottom: '20px',
-        width: '370px',
-        '& .MuiInput-underline:before': {
-          borderBottomColor: ACCENT_COLOR
-        },
-        '&:hover': {
-          borderBottomColor: ACCENT_COLOR
-        }
-      }
-    },
     MuiButton: {
       root: {
+        fontWeight: 'bold',
+        fontSize: '17px',
         '&:focus': {
           outline: 'none'
         }
-      }
-    },
-    MuiInputLabel: {
-      root: {
-        color: ACCENT_COLOR
       }
     }
   }

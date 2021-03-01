@@ -1,14 +1,10 @@
 import React, {useState} from 'react';
-import {Container} from '@material-ui/core';
-import './assets/style/main.scss';
 
-import {Stat} from './containers/pages/Stat';
 import {Game} from './components/Game';
 
 import {Header} from './components/Header';
 import {Footer} from './components/Footer';
 
-import {Switch, Route} from 'react-router-dom';
 import {refElement} from './types';
 
 interface IFullScreenRef extends HTMLElement {
@@ -35,14 +31,7 @@ const App: React.FC = () => {
   return (
     <>
       <Header onBtnFullScreenClick={handleBtnFullScreenClick} />
-      <Container maxWidth="xl">
-        <Switch>
-          <Route exact path="/">
-            <Game innerRef={setRef} />
-          </Route>
-          <Route exact path="/stat" component={Stat} />
-        </Switch>
-      </Container>
+      <Game innerRef={setRef} />
       <Footer />
     </>
   );

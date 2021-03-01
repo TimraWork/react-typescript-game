@@ -1,7 +1,5 @@
 import React, {FC} from 'react';
 
-// key={idx} value={el} setActive
-
 interface IProps {
   value: string;
   isWinner: boolean | null;

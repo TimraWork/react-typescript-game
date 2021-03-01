@@ -1,184 +1,16 @@
 $accent: #000;
+$red: #ed4b82;
+$green: #009688;
+$gray: #eeeeee;
+$gray-dark: #e0e0e0;
+$gray-hover: #606060;
 
-// footer bottom BEGIN
-.main {
-  display: flex !important;
-  flex-direction: column;
-  min-height: 100vh;
-  font-weight: normal;
-  background: #fff;
+body {
+  font: bold 24px/1.6 'Jura', sans-serif;
+  background: #eeeeee !important;
 }
 
-img {
-  max-width: 100%;
-}
-
-button:focus {
-  outline: none !important;
-}
-
-.MuiInput-underline:hover:not(.Mui-disabled):before {
-  border-bottom: 2px solid $accent !important;
-}
-
-nav a.active {
-  background-color: rgba($accent, 0.3) !important;
-}
-
-footer {
-  border-top: 1px solid rgba($accent, 0.3);
-  padding: 30px 0;
-  margin-top: auto;
-  color: $accent;
-  text-align: center;
-}
-
-.copyright {
-  font-weight: bold;
-}
-// footer bottom BEGIN
-
-// LOGO begin
-.logo {
-  display: flex;
-  align-items: center;
-  color: rgba($accent, 0.7);
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    color: rgba($accent, 1);
-    .logo__img {
-      opacity: 1;
-    }
-  }
-  &__img {
-    width: 100px;
-    margin-right: 10px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease-in-out;
-  }
-  &__text {
-    display: inline-block;
-    vertical-align: top;
-  }
-  &__title {
-    font-weight: 800;
-    font-size: 25px;
-    line-height: 1;
-    display: block;
-  }
-}
-
-.nav {
-  display: inline-flex;
-}
-
-.searchIcon,
-.MuiButton-label {
-  color: $accent;
-}
-
-.MuiCardActionArea-root {
-  transition: all 0.3s ease-in-out;
-}
-
-.searchBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba($accent, 0.2);
-  border-radius: 15px;
-  padding: 0 15px;
-  .searchIcon {
-    margin-right: 10px;
-  }
-  .MuiInputBase-input {
-    width: 70px;
-    transition: all 0.3s ease-in-out;
-    &:focus {
-      width: 140px;
-    }
-  }
-  .MuiSvgIcon-root {
-    vertical-align: bottom;
-  }
-}
-
-.error {
-  color: #f48fb1;
-}
-
-.content {
-  // padding: 40px 0;
-}
-
-.MuiPagination-root {
-  text-align: center;
-  margin: 30px auto 30px;
-  color: #fff;
-  .MuiPagination-ul {
-    justify-content: center;
-  }
-}
-
-// Loader BEGIN
-/* KEYFRAMES */
-
-@keyframes pulse {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0.25;
-    transform: scale(0.75);
-  }
-}
-
-/* PULSE BUBBLES */
-
-.pulse-container {
-  margin: 30px auto 30px;
-  width: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.pulse-bubble {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: $accent;
-}
-
-.pulse-bubble-1 {
-  animation: pulse 0.4s ease 0s infinite alternate;
-}
-.pulse-bubble-2 {
-  animation: pulse 0.4s ease 0.2s infinite alternate;
-}
-.pulse-bubble-3 {
-  animation: pulse 0.4s ease 0.4s infinite alternate;
-}
-
-// Loader END
-
-.error {
-  text-align: center;
-  margin: 30px 0;
-  font-size: 14px;
-}
-
-.date {
-  color: gray;
-}
-
-.MuiCard-root {
-  max-height: 435px;
-  overflow-y: scroll !important;
-}
-
+/* ------------------------------  LAYOUT BEGIN ----------------------------- */
 html,
 body {
   height: 100%;
@@ -190,96 +22,52 @@ body {
   flex-direction: column;
 }
 
-.content {
-  flex: 1 0 auto;
+header {
+  margin-bottom: auto;
 }
-
-// loader begin
-.loader,
-.loader:before,
-.loader:after {
-  border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: load7 1.8s infinite ease-in-out;
-  animation: load7 1.8s infinite ease-in-out;
-}
-.loader {
-  color: $accent;
-  font-size: 10px;
-  margin: 80px auto;
-  position: relative;
-  text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
-.loader:before,
-.loader:after {
-  content: '';
-  position: absolute;
-  top: 0;
-}
-.loader:before {
-  left: -3.5em;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-.loader:after {
-  left: 3.5em;
-}
-@-webkit-keyframes load7 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
-  }
-}
-@keyframes load7 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
-  }
-}
-
-.example-eneter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 300ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
-//Loader end
 
 footer {
-  flex: 0 0 auto;
-  padding: 10px 20px;
+  margin-top: auto;
+}
+/* ------------------------------  LAYOUT END ----------------------------- */
+
+/* ------------------------------  HEADER BEGIN ----------------------------- */
+header {
+  background: #fff;
   display: flex;
-  align-items: center;
+  padding: 10px 20px;
 }
 
-// footer-logo
+.logo {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  color: rgba($accent, 0.7);
+  text-decoration: none;
+  &__img {
+    width: 100px;
+    margin-right: 10px;
+    opacity: 0.8;
+  }
+  &__title {
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 1;
+    display: block;
+  }
+}
+/* ------------------------------  HEADER END ----------------------------- */
+
+/* ------------------------------  FOOTER BEGIN ----------------------------- */
+footer {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff;
+  color: $accent;
+  text-align: center;
+}
+
 .footer-logo {
   flex: 0 1 auto;
   &__img {
@@ -288,37 +76,12 @@ footer {
 }
 
 .copyright {
+  font-weight: bold;
   margin: auto;
 }
+/* ------------------------------  FOOTER END ----------------------------- */
 
-// Styles for tic-toc
-.square {
-  font: bold 24px/54px 'Jura', sans-serif;
-  width: 100px;
-  height: 100px;
-  background: #fff;
-  border: none;
-  border-radius: 10px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  &--winner {
-    background: #e0e0e0;
-    svg * {
-      stroke: #ed4b82;
-    }
-  }
-}
-
-.square:hover,
-.square:focus {
-  background: #e0e0e0;
-  outline: none;
-}
-
+/* ------------------------------  BOARD BEGIN ----------------------------- */
 .board {
   width: auto;
   height: auto;
@@ -337,23 +100,14 @@ footer {
     opacity: 0;
   }
 }
-.board--disabled button.square {
-  // pointer-events: none;
-  pointer-events: none !important;
-  &:hover {
-    background: none !important;
-  }
-}
+/* ------------------------------  BOARD END ----------------------------- */
 
+/* ------------------------------  GAME BEGIN ----------------------------- */
 .game {
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 100%;
-  height: calc(100vh - 140px);
-  flex-direction: row;
   &--board {
     position: relative;
     margin-top: 60px;
@@ -366,17 +120,19 @@ footer {
   }
 }
 
-.play-again {
-  position: absolute !important;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -20px;
-}
-
 .game-info {
   margin-left: 20px;
 }
 
+.btn-new-game {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -55px;
+}
+/* ------------------------------  GAME END ----------------------------- */
+
+/* ------------------------------  STATUS BEGIN ----------------------------- */
 .status {
   position: absolute;
   left: 0;
@@ -384,28 +140,55 @@ footer {
   top: -40px;
   font-size: 20px;
   font-weight: bold;
-  color: #009688;
+  color: $green;
   margin-bottom: 10px;
-
   &--nextX {
-    color: #606060;
+    color: $gray-hover;
   }
   &--win {
-    animation: win 0.6s 3s ease-in-out forwards;
-    color: #ed4b82;
+    animation: win 0.4s 3s ease-in-out forwards;
+    color: $red;
   }
 }
 
 @keyframes win {
   100% {
-    top: 25%;
+    top: 30%;
     font-size: 50px;
     z-index: 1;
   }
 }
+/* ------------------------------  STATUS END ----------------------------- */
 
-/* ------------------------------ ADDITIONAL STYLES ----------------------------- */
-/* ------------------------------ 0 ANIMATION ----------------------------- */
+/* ------------------------------  SQUARE BEGIN ----------------------------- */
+.square {
+  font: bold 24px/54px 'Jura', sans-serif;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  &:hover,
+  &:focus {
+    background: $gray-dark;
+    outline: none;
+  }
+  &--winner {
+    background: $gray-dark;
+    svg * {
+      stroke: $red;
+    }
+  }
+}
+/* ------------------------------  SQUARE END ----------------------------- */
+
+/* ------------------------------  SVG ANIMATION BEGIN ----------------------------- */
 .circle,
 .first,
 .second {
@@ -423,7 +206,6 @@ footer {
   margin: auto;
 }
 
-/* ------------------------------ X ANIMATION ----------------------------- */
 .cross {
   display: block;
   width: 45px;
@@ -445,24 +227,18 @@ footer {
   animation: draw 0.6s 0.6s forwards;
 }
 
-/* ------------------------------ X ANIMATION ----------------------------- */
 @keyframes draw {
   100% {
     stroke-dashoffset: 0;
     opacity: 1;
   }
 }
+/* ------------------------------  SVG ANIMATION END ----------------------------- */
 
-/* ------------------------------ FULLSCREEN ----------------------------- */
+/* ------------------------------ FULLSCREEN BEGIN ----------------------------- */
 .game:fullscreen {
   background: #eeeeee;
 }
-
-.game:-ms-fullscreen,
-.game:-moz-full-screen,
-.game:-webkit-full-screen {
-  background: #eeeeee;
-}
-/* ------------------------------ FULLSCREEN ----------------------------- */
+/* ------------------------------ FULLSCREEN END----------------------------- */
 
 @import './media';
