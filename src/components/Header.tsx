@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ObjectHTMLAttributes} from 'react';
 import {createStyles, makeStyles, Theme, fade} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,7 +10,7 @@ import {Container} from '@material-ui/core';
 import {Logo} from './parts/Logo';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import {Nav} from './parts/Nav';
-import {BtnFullScreen} from '../containers/parts/BtnFullScreen';
+import {BtnFullScreen} from './parts/BtnFullScreen';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export function Header() {
-  const classes = useStyles();
+interface IProps {
+  onBtnFullScreenClick: () => void;
+}
 
-  const FullscreenIconClickHandler = () => {
-    console.log('click');
-  };
+export const Header: React.FC<IProps> = ({onBtnFullScreenClick}) => {
+  const classes = useStyles();
 
   return (
     <AppBar position="sticky" color="inherit" className={classes.appBar}>
@@ -63,7 +63,7 @@ export function Header() {
             <IconButton className={classes.menuButton}>
               <VolumeOffIcon />
             </IconButton>
-            <BtnFullScreen />
+            <BtnFullScreen onBtnFullScreenClick={onBtnFullScreenClick} />
           </div>
 
           <div className={classes.sectionMobile}>
@@ -75,4 +75,4 @@ export function Header() {
       </Container>
     </AppBar>
   );
-}
+};
