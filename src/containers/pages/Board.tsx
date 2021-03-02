@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Button} from '@material-ui/core';
 import {Square} from '../../components/Square';
-import {getWinner, getStatus, setAudio} from './utils';
+import {getWinner, getStatus, playAudio} from './utils';
 
 interface IProps {
   isMute: boolean;
@@ -28,7 +28,8 @@ export const Board: FC<IProps> = ({isMute}) => {
 
     setSquares(array);
     setXIsNext(!xIsNext);
-    if (!isMute) setAudio(xIsNext);
+    const audioName = xIsNext ? 'cross' : 'zero';
+    if (!isMute) playAudio(audioName);
   };
 
   const handlePlayAgain = () => {
@@ -36,6 +37,18 @@ export const Board: FC<IProps> = ({isMute}) => {
     setWinner(null);
     setIsTie(false);
   };
+
+  useEffect(() => {
+    setTimeout(function () {
+      if (!isMute && winner && !isTie) playAudio('win');
+    }, 2000);
+  }, [winner, isTie]);
+
+  useEffect(() => {
+    setTimeout(function () {
+      if (!isMute && isTie && !winner) playAudio('tie');
+    }, 1500);
+  }, [isTie, winner]);
 
   return (
     <>

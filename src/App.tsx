@@ -6,6 +6,7 @@ import {Header} from './components/Header';
 import {Footer} from './components/Footer';
 
 import {refElement} from './types';
+import {playAudio} from './containers/pages/utils';
 
 interface IFullScreenRef extends HTMLElement {
   msRequestFullscreen?: () => void;
@@ -30,6 +31,7 @@ const App: React.FC = () => {
   };
 
   const handleBtnVolumeMuteClick = () => {
+    if (isMute) playAudio('mute');
     setIsMute(!isMute);
   };
 

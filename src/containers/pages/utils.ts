@@ -33,8 +33,8 @@ export const getStatus = (winner: string | null, xIsNext: boolean, isTie: boolea
   return status;
 };
 
-export const setAudio = (xIsNext: boolean) => {
-  const audioUrl = xIsNext ? 'https://timra.ru/portfolio/audio/cross.mp3' : 'https://timra.ru/portfolio/audio/zero.mp3';
+export const playAudio = (audioName: string) => {
+  const audioUrl = `https://timra.ru/portfolio/audio/${audioName}.mp3`;
   const audio = new Audio(audioUrl);
   audio.volume = 0.1;
   audio.play();
