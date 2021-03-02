@@ -31,7 +31,7 @@ const App: React.FC = () => {
   };
 
   const handleBtnVolumeMuteClick = () => {
-    if (isMute) playAudio('mute');
+    if (isMute) playAudio('mute', isMute);
     setIsMute(!isMute);
   };
 

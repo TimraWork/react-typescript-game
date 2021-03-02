@@ -15,9 +15,9 @@ export const Board: FC<IProps> = ({isMute}) => {
 
   useEffect(() => {
     const winnerEl = getWinner(squares)?.winner || null;
-
     setWinner(winnerEl);
-    setIsTie(squares.filter((el) => el).length === 9);
+
+    if (winnerEl) setIsTie(false);
   }, [squares, xIsNext]);
 
   const handleClick = (i: number) => {
@@ -28,8 +28,11 @@ export const Board: FC<IProps> = ({isMute}) => {
 
     setSquares(array);
     setXIsNext(!xIsNext);
+
     const audioName = xIsNext ? 'cross' : 'zero';
-    if (!isMute) playAudio(audioName);
+    playAudio(audioName, isMute);
+
+    setIsTie(array.filter((el) => el).length === 9);
   };
 
   const handlePlayAgain = () => {
@@ -40,15 +43,16 @@ export const Board: FC<IProps> = ({isMute}) => {
 
   useEffect(() => {
     setTimeout(function () {
-      if (!isMute && winner && !isTie) playAudio('win');
+      if (winner && !isTie) playAudio('win', isMute);
     }, 2000);
-  }, [winner, isTie]);
+  }, [isTie, winner]);
 
   useEffect(() => {
+    console.log(isTie, winner);
     setTimeout(function () {
-      if (!isMute && isTie && !winner) playAudio('tie');
+      if (isTie) playAudio('tie', isMute);
     }, 1500);
-  }, [isTie, winner]);
+  }, [isTie]);
 
   return (
     <>

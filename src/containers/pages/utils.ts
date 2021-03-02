@@ -33,9 +33,11 @@ export const getStatus = (winner: string | null, xIsNext: boolean, isTie: boolea
   return status;
 };
 
-export const playAudio = (audioName: string) => {
-  const audioUrl = `https://timra.ru/portfolio/audio/${audioName}.mp3`;
-  const audio = new Audio(audioUrl);
-  audio.volume = 0.1;
-  audio.play();
+export const playAudio = (audioName: string, isMute: boolean) => {
+  if (!isMute) {
+    const audioUrl = `https://timra.ru/portfolio/audio/${audioName}.mp3`;
+    const audio: HTMLAudioElement = new Audio(audioUrl);
+    audio.volume = 0.1;
+    audio.play();
+  }
 };
