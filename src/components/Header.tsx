@@ -14,7 +14,7 @@ interface IProps {
 }
 
 export const Header: React.FC<IProps> = ({onBtnFullScreenClick, onBtnVolumeMuteClick, isMute}) => {
-  const [isMusicPlayed, setIsMusicPlayed] = useState<boolean>(false);
+  const [isMusicPlayed, setIsMusicPlayed] = useState<boolean>(true);
   const refVideo = useRef<HTMLAudioElement>(null);
 
   const handleMusicClick = () => {
@@ -27,7 +27,6 @@ export const Header: React.FC<IProps> = ({onBtnFullScreenClick, onBtnVolumeMuteC
     if (!isMusicPlayed) {
       refVideo.current.defaultMuted = true;
       refVideo.current.muted = true;
-      // refVideo.current.volume = 0.05;
     } else {
       refVideo.current.defaultMuted = false;
       refVideo.current.muted = false;
@@ -43,7 +42,7 @@ export const Header: React.FC<IProps> = ({onBtnFullScreenClick, onBtnVolumeMuteC
       </IconButton>
 
       <IconButton onClick={handleMusicClick}>{!isMusicPlayed ? <MusicOffIcon /> : <MusicNoteIcon />}</IconButton>
-      <audio autoPlay loop ref={refVideo} src="https://timra.ru/portfolio/audio/music.mp3" />
+      {!isMusicPlayed && <audio autoPlay loop ref={refVideo} src="https://timra.ru/portfolio/audio/music.mp3" />}
 
       <IconButton onClick={onBtnVolumeMuteClick}>{!isMute ? <VolumeOffIcon /> : <VolumeUpIcon />}</IconButton>
     </header>

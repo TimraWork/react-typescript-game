@@ -8,10 +8,14 @@ interface IProps {
 }
 
 export const Board: FC<IProps> = ({isMute}) => {
-  const [squares, setSquares] = useState<Array<string>>(Array(9).fill(null));
+  const [squares, setSquares] = useState<Array<string | null>>(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState<boolean>(true);
   const [winner, setWinner] = useState<null | Object>(null);
   const [isTie, setIsTie] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('squares')) setSquares(JSON.parse(localStorage.getItem('squares') || ''));
+  }, []);
 
   useEffect(() => {
     const winnerEl = getWinner(squares)?.winner || null;
@@ -21,12 +25,13 @@ export const Board: FC<IProps> = ({isMute}) => {
   }, [squares, xIsNext]);
 
   const handleClick = (i: number) => {
-    const array: Array<string> = squares.slice();
+    const array = squares.slice();
 
     if (getWinner(array) || squares[i]) return;
     array[i] = xIsNext ? 'X' : 'O';
 
     setSquares(array);
+    localStorage.setItem('squares', JSON.stringify(array));
     setXIsNext(!xIsNext);
 
     const audioName = xIsNext ? 'cross' : 'zero';
@@ -37,6 +42,8 @@ export const Board: FC<IProps> = ({isMute}) => {
 
   const handlePlayAgain = () => {
     setSquares(Array(9).fill(null));
+    localStorage.setItem('squares', JSON.stringify(Array(9).fill(null)));
+
     setWinner(null);
     setIsTie(false);
   };
@@ -48,7 +55,6 @@ export const Board: FC<IProps> = ({isMute}) => {
   }, [isTie, winner]);
 
   useEffect(() => {
-    console.log(isTie, winner);
     setTimeout(function () {
       if (isTie) playAudio('tie', isMute);
     }, 1500);

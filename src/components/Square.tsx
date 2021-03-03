@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 
 interface IProps {
-  value: string;
+  value: string | null;
   isWinner: boolean | null;
   setActive: () => void;
 }
