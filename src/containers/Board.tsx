@@ -1,29 +1,37 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Button} from '@material-ui/core';
 import {Square} from '../components/Square';
-import {getWinner, getStatus, playAudio} from '../utils';
+import {fillArray, getWinner, playAudio} from '../utils';
+import {GameStatus} from './GameStatus';
 
 interface IProps {
   isMute: boolean;
 }
 
+const STORAGE = 'react-game/squares';
+
 export const Board: FC<IProps> = ({isMute}) => {
-  const [squares, setSquares] = useState<Array<string | null>>(Array(9).fill(null));
+  const [squares, setSquares] = useState<Array<string | null>>(fillArray);
   const [xIsNext, setXIsNext] = useState<boolean>(true);
-  const [winner, setWinner] = useState<null | Object>(null);
+  const [winner, setWinner] = useState<string | null>(null);
   const [isTie, setIsTie] = useState<boolean>(false);
 
   useEffect(() => {
-    if (localStorage.getItem('squares')) setSquares(JSON.parse(localStorage.getItem('squares') || ''));
+    const getStorage = localStorage.getItem(STORAGE);
+    if (getStorage) setSquares(JSON.parse(getStorage || ''));
   }, []);
 
   useEffect(() => {
-    const winnerEl = getWinner(squares)?.winner || null;
-    setWinner(winnerEl);
+    const winner = getWinner(squares)?.winner || null;
+    if (winner) {
+      setWinner(winner);
+    } else {
+      setWinner(null);
+    }
 
-    if (winnerEl) setIsTie(false);
-    setIsTie(squares.filter((el) => el).length === 9);
-  }, [squares, xIsNext]);
+    const isGameTie = !!(squares.filter((el) => el).length === 9);
+    setIsTie(isGameTie);
+  }, [squares]);
 
   const handleSquareClick = (i: number) => {
     const array = squares.slice();
@@ -31,40 +39,25 @@ export const Board: FC<IProps> = ({isMute}) => {
     if (getWinner(array) || squares[i]) return;
     array[i] = xIsNext ? 'X' : 'O';
 
-    setSquares(array);
-    localStorage.setItem('squares', JSON.stringify(array));
-    setXIsNext(!xIsNext);
+    localStorage.setItem(STORAGE, JSON.stringify(array));
 
-    const audioName = xIsNext ? 'cross' : 'zero';
-    playAudio(audioName, isMute);
+    setSquares(array);
+    setXIsNext(!xIsNext);
+    playAudio(xIsNext ? 'cross' : 'zero', isMute);
   };
 
-  const handlePlayAgain = () => {
-    setSquares(Array(9).fill(null));
-    localStorage.setItem('squares', JSON.stringify(Array(9).fill(null)));
-
+  const handleNewGameClick = () => {
+    setSquares(fillArray);
     setWinner(null);
     setIsTie(false);
+    setXIsNext(true);
+    localStorage.removeItem(STORAGE);
   };
-
-  useEffect(() => {
-    setTimeout(function () {
-      if (winner && !isTie) playAudio('win', isMute);
-    }, 2000);
-  }, [isTie, winner]);
-
-  useEffect(() => {
-    setTimeout(function () {
-      if (isTie) playAudio('tie', isMute);
-    }, 1500);
-  }, [isTie]);
 
   return (
     <>
-      <div className={`status ${winner || isTie ? 'status--win' : ''} ${xIsNext ? 'status--nextX' : ''}`}>
-        &nbsp; {getStatus(getWinner(squares)?.winner || null, xIsNext, isTie)}
-      </div>
-      <div className={winner || isTie ? 'board  board--disabled' : 'board'}>
+      <GameStatus squares={squares} xIsNext={xIsNext} isMute={isMute} winner={winner} isTie={isTie} />
+      <div className={`board ${winner || isTie ? 'board--disabled' : ''}`}>
         {squares.map((el, idx) => {
           return (
             <Square
@@ -77,7 +70,7 @@ export const Board: FC<IProps> = ({isMute}) => {
         })}
       </div>
       {(winner || isTie) && (
-        <Button className="btn-new-game" variant="contained" onClick={handlePlayAgain}>
+        <Button className="btn-new-game" variant="contained" onClick={handleNewGameClick}>
           new game
         </Button>
       )}

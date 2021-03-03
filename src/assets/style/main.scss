@@ -107,6 +107,7 @@ footer {
 
 /* ------------------------------  GAME BEGIN ----------------------------- */
 .game {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,6 +146,7 @@ footer {
   font-weight: bold;
   color: $green;
   margin-bottom: 10px;
+  transition: all 0.3s ease;
   &--nextX {
     color: $gray-hover;
   }
@@ -241,6 +243,19 @@ footer {
 /* ------------------------------ FULLSCREEN BEGIN ----------------------------- */
 .game:fullscreen {
   background: #eeeeee;
+}
+
+.FullscreenExitIcon {
+  position: absolute !important;
+  right: 30px;
+  top: 30px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game:fullscreen .FullscreenExitIcon {
+  opacity: 1;
+  pointer-events: all;
 }
 /* ------------------------------ FULLSCREEN END----------------------------- */
 

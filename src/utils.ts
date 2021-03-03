@@ -1,3 +1,5 @@
+export const fillArray = () => Array(9).fill(null);
+
 export const getWinner = (squares: Array<string | null>) => {
   // prettier-ignore
   const winnerLines = [
@@ -20,24 +22,13 @@ export const getWinner = (squares: Array<string | null>) => {
   return null;
 };
 
-export const getStatus = (winner: string | null, xIsNext: boolean, isTie: boolean) => {
-  let status;
-  if (winner) {
-    status = 'Winner: ' + winner;
-  } else if (isTie) {
-    status = 'TIE !!!';
-  } else {
-    status = 'Next: ' + (xIsNext ? 'X' : '0');
-  }
-
-  return status;
-};
-
-export const playAudio = (audioName: string, isMute: boolean) => {
+export const playAudio = (audioName: string, isMute: boolean, timeout?: number) => {
   if (!isMute) {
     const audioUrl = `https://timra.ru/portfolio/audio/${audioName}.mp3`;
     const audio: HTMLAudioElement = new Audio(audioUrl);
     audio.volume = 0.1;
-    audio.play();
+    setTimeout(function () {
+      audio.play();
+    }, timeout || 0);
   }
 };

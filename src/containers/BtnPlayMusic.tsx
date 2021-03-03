@@ -3,6 +3,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import MusicOffIcon from '@material-ui/icons/MusicOff';
 
+const MUSIC_URL = 'https://timra.ru/portfolio/audio/music.mp3';
+
 export const BtnPlayMusic: React.FC = () => {
   const [isMusicPlayed, setIsMusicPlayed] = useState<boolean>(true);
   const refMusic = useRef<HTMLAudioElement>(null);
@@ -26,7 +28,7 @@ export const BtnPlayMusic: React.FC = () => {
   return (
     <>
       <IconButton onClick={handleMusicToggleClick}>{!isMusicPlayed ? <MusicOffIcon /> : <MusicNoteIcon />}</IconButton>
-      {!isMusicPlayed && <audio autoPlay loop ref={refMusic} src="https://timra.ru/portfolio/audio/music.mp3" />}
+      {!isMusicPlayed && <audio autoPlay loop ref={refMusic} src={MUSIC_URL} />}
     </>
   );
 };

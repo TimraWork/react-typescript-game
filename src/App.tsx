@@ -11,7 +11,6 @@ import {playAudio} from './utils';
 interface IFullScreenRef extends HTMLElement {
   msRequestFullscreen?: () => void;
   webkitRequestFullScreen?: () => void;
-  mozRequestFullScreen?: () => void;
 }
 
 const App: React.FC = () => {
@@ -27,7 +26,6 @@ const App: React.FC = () => {
     if (target && target.requestFullscreen) target.requestFullscreen();
     if (target && target.webkitRequestFullScreen) target.webkitRequestFullScreen();
     if (target && target.msRequestFullscreen) target.msRequestFullscreen();
-    if (target && target.mozRequestFullScreen) target.mozRequestFullScreen();
   };
 
   const handleBtnVolumeMuteClick = () => {
@@ -35,10 +33,14 @@ const App: React.FC = () => {
     setIsMute(!isMute);
   };
 
+  const handleFullscreenExitClick = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+  };
+
   return (
     <>
-      <Header onBtnFullScreenClick={handleBtnFullScreenClick} onBtnVolumeMuteClick={handleBtnVolumeMuteClick} isMute={isMute} />
-      <Game innerRef={setRef} isMute={isMute} />
+      <Header isMute={isMute} onBtnFullScreenClick={handleBtnFullScreenClick} onBtnVolumeMuteClick={handleBtnVolumeMuteClick} />
+      <Game isMute={isMute} innerRef={setRef} handleFullscreenExitClick={handleFullscreenExitClick} />
       <Footer />
     </>
   );
