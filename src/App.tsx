@@ -4,9 +4,9 @@ import {Game} from './components/Game';
 
 import {Header} from './components/Header';
 import {Footer} from './components/Footer';
-
-import {refElement} from './types';
 import {playAudio} from './utils';
+
+export type refElement = HTMLElement | null;
 
 interface IFullScreenRef extends HTMLElement {
   msRequestFullscreen?: () => void;
@@ -14,7 +14,7 @@ interface IFullScreenRef extends HTMLElement {
 }
 
 const App: React.FC = () => {
-  const [fullScreenRef, setFullScreenRef] = useState<refElement>(null);
+  const [fullScreenRef, setFullScreenRef] = useState<IFullScreenRef | null>(null);
   const [isMute, setIsMute] = useState<boolean>(false);
 
   const setRef = (ref: refElement) => {
@@ -22,7 +22,7 @@ const App: React.FC = () => {
   };
 
   const handleBtnFullScreenClick = () => {
-    const target: IFullScreenRef = fullScreenRef;
+    const target: IFullScreenRef | null = fullScreenRef;
     if (target && target.requestFullscreen) target.requestFullscreen();
     if (target && target.webkitRequestFullScreen) target.webkitRequestFullScreen();
     if (target && target.msRequestFullscreen) target.msRequestFullscreen();

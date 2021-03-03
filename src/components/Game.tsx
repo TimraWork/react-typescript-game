@@ -1,7 +1,7 @@
 import {IconButton} from '@material-ui/core';
 import React from 'react';
 import {Board} from '../containers/Board';
-import {refElement} from '../types';
+import {refElement} from '../App';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 interface IProps {
   innerRef: (ref: refElement) => void;
