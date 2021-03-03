@@ -1,13 +1,17 @@
 import {createMuiTheme} from '@material-ui/core/styles';
-const ACCENT_COLOR = 'rgb(0, 0, 0)';
+
+const Color = {
+  PRIMARY: 'rgb(0, 0, 0)',
+  SECONDARY: 'rgb(0, 150, 136)'
+};
 
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: ACCENT_COLOR
+      main: Color.PRIMARY
     },
     secondary: {
-      main: ACCENT_COLOR
+      main: Color.SECONDARY
     }
   },
   typography: {

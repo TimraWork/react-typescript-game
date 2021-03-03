@@ -29,6 +29,6 @@ export const playAudio = (audioName: string, isMute: boolean, timeout?: number) 
     audio.volume = 0.1;
     setTimeout(function () {
       audio.play();
-    }, timeout || 0);
+    }, timeout);
   }
 };

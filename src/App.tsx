@@ -36,9 +36,9 @@ const App: React.FC = () => {
   };
 
   const handleBtnVolumeMuteClick = () => {
-    if (isMute) playAudio('mute', isMute);
     setIsMute(!isMute);
     localStorage.setItem(STORAGE, JSON.stringify(!isMute));
+    playAudio('mute', !isMute);
   };
 
   const handleFullscreenExitClick = () => {

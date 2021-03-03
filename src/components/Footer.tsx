@@ -5,10 +5,10 @@ import TelegramIcon from '@material-ui/icons/Telegram';
 
 export const Footer = () => (
   <footer>
-    <IconButton color="primary" href="https://github.com/TimraWork" target="_blank">
+    <IconButton href="https://github.com/TimraWork" target="_blank">
       <GitHubIcon />
     </IconButton>
-    <IconButton color="primary" href="https://telegram.me/timra_work" target="_blank">
+    <IconButton href="https://telegram.me/timra_work" target="_blank">
       <TelegramIcon />
     </IconButton>
     <div className="copyright">&copy; 2021</div>
