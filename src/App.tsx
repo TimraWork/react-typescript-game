@@ -6,7 +6,7 @@ import {Header} from './components/Header';
 import {Footer} from './components/Footer';
 
 import {refElement} from './types';
-import {playAudio} from './containers/pages/utils';
+import {playAudio} from './utils';
 
 interface IFullScreenRef extends HTMLElement {
   msRequestFullscreen?: () => void;

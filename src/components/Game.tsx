@@ -1,5 +1,5 @@
 import React from 'react';
-import {Board} from '../containers/pages/Board';
+import {Board} from '../containers/Board';
 import {refElement} from '../types';
 
 interface IProps {

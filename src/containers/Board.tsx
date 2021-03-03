@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Button} from '@material-ui/core';
-import {Square} from '../../components/Square';
-import {getWinner, getStatus, playAudio} from './utils';
+import {Square} from '../components/Square';
+import {getWinner, getStatus, playAudio} from '../utils';
 
 interface IProps {
   isMute: boolean;
@@ -22,9 +22,10 @@ export const Board: FC<IProps> = ({isMute}) => {
     setWinner(winnerEl);
 
     if (winnerEl) setIsTie(false);
+    setIsTie(squares.filter((el) => el).length === 9);
   }, [squares, xIsNext]);
 
-  const handleClick = (i: number) => {
+  const handleSquareClick = (i: number) => {
     const array = squares.slice();
 
     if (getWinner(array) || squares[i]) return;
@@ -36,8 +37,6 @@ export const Board: FC<IProps> = ({isMute}) => {
 
     const audioName = xIsNext ? 'cross' : 'zero';
     playAudio(audioName, isMute);
-
-    setIsTie(array.filter((el) => el).length === 9);
   };
 
   const handlePlayAgain = () => {
@@ -67,7 +66,14 @@ export const Board: FC<IProps> = ({isMute}) => {
       </div>
       <div className={winner || isTie ? 'board  board--disabled' : 'board'}>
         {squares.map((el, idx) => {
-          return <Square key={idx} value={el} isWinner={getWinner(squares)?.idxs.includes(idx) || null} setActive={() => handleClick(idx)} />;
+          return (
+            <Square
+              key={idx}
+              value={el}
+              isWinner={getWinner(squares)?.idxs.includes(idx) || null}
+              setActive={() => handleSquareClick(idx)}
+            />
+          );
         })}
       </div>
       {(winner || isTie) && (
