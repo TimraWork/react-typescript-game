@@ -1,0 +1,262 @@
+$accent: #000;
+$red: #ed4b82;
+$green: #009688;
+$gray: #eeeeee;
+$gray-dark: #e0e0e0;
+$gray-hover: #606060;
+
+body {
+  font: bold 24px/1.6 'Jura', sans-serif;
+  background: #eeeeee !important;
+}
+
+/* ------------------------------  LAYOUT BEGIN ----------------------------- */
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+header {
+  margin-bottom: auto;
+}
+
+footer {
+  margin-top: auto;
+}
+/* ------------------------------  LAYOUT END ----------------------------- */
+
+/* ------------------------------  HEADER BEGIN ----------------------------- */
+header {
+  background: #fff;
+  display: flex;
+  padding: 10px 20px;
+}
+
+.logo {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  color: rgba($accent, 0.7);
+  text-decoration: none;
+  &__img {
+    width: 100px;
+    margin-right: 10px;
+    opacity: 0.8;
+  }
+  &__title {
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 1;
+    display: block;
+  }
+}
+/* ------------------------------  HEADER END ----------------------------- */
+
+/* ------------------------------  FOOTER BEGIN ----------------------------- */
+footer {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff;
+  color: $accent;
+  text-align: center;
+}
+
+.footer-logo {
+  flex: 0 1 auto;
+  &__img {
+    width: 80px;
+  }
+}
+
+.copyright {
+  font-weight: bold;
+  margin: auto;
+}
+/* ------------------------------  FOOTER END ----------------------------- */
+
+/* ------------------------------  BOARD BEGIN ----------------------------- */
+.board {
+  width: auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 6px;
+  border-radius: 10px;
+  transition: all 0.6s ease-in-out;
+  &--disabled {
+    animation: hide 0.4s 3s ease-in-out forwards;
+    .square {
+      pointer-events: none;
+    }
+  }
+}
+
+@keyframes hide {
+  100% {
+    opacity: 0;
+  }
+}
+/* ------------------------------  BOARD END ----------------------------- */
+
+/* ------------------------------  GAME BEGIN ----------------------------- */
+.game {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  &--board {
+    position: relative;
+    margin-top: 60px;
+  }
+  &--title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -120px;
+  }
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.btn-new-game {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -55px;
+}
+/* ------------------------------  GAME END ----------------------------- */
+
+/* ------------------------------  STATUS BEGIN ----------------------------- */
+.status {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: $green;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  &--nextX {
+    color: $gray-hover;
+  }
+  &--win {
+    animation: win 0.4s 3s ease-in-out forwards;
+    color: $red;
+  }
+}
+
+@keyframes win {
+  100% {
+    top: 30%;
+    font-size: 50px;
+    z-index: 1;
+  }
+}
+/* ------------------------------  STATUS END ----------------------------- */
+
+/* ------------------------------  SQUARE BEGIN ----------------------------- */
+.square {
+  font: bold 24px/54px 'Jura', sans-serif;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  &:hover,
+  &:focus {
+    background: $gray-dark;
+    outline: none;
+  }
+  &--winner {
+    background: $gray-dark;
+    svg * {
+      stroke: $red;
+    }
+  }
+}
+/* ------------------------------  SQUARE END ----------------------------- */
+
+/* ------------------------------  SVG ANIMATION BEGIN ----------------------------- */
+.circle,
+.first,
+.second {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.circle {
+  display: block;
+  width: 50px;
+  height: 50px;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: draw 1s ease-in-out forwards;
+  margin: auto;
+}
+
+.cross {
+  display: block;
+  width: 45px;
+  height: 45px;
+  margin: auto;
+}
+
+.first {
+  stroke-dasharray: 125;
+  stroke-dashoffset: 125;
+  -webkit-animation: draw 0.6s forwards;
+  animation: draw 0.6s forwards;
+}
+
+.second {
+  stroke-dasharray: 125;
+  stroke-dashoffset: 125;
+  -webkit-animation: draw 0.6s 0.6s forwards;
+  animation: draw 0.6s 0.6s forwards;
+}
+
+@keyframes draw {
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+/* ------------------------------  SVG ANIMATION END ----------------------------- */
+
+/* ------------------------------ FULLSCREEN BEGIN ----------------------------- */
+.game:fullscreen {
+  background: #eeeeee;
+}
+
+.FullscreenExitIcon {
+  position: absolute !important;
+  right: 30px;
+  top: 30px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game:fullscreen .FullscreenExitIcon {
+  opacity: 1;
+  pointer-events: all;
+}
+/* ------------------------------ FULLSCREEN END----------------------------- */
+
+@import './media';
